@@ -1,0 +1,20 @@
+{
+
+  "manifest_version": 2,
+  "name": "Browsing WatchDog",
+  "version": "1.0",
+
+  "description": "Helps you to develope a healthy browsing habit.",
+
+  "icons": {
+    "48": "icons/watchdog-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["borderify.js"]
+    }
+  ]
+
+}
