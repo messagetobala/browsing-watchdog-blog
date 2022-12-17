@@ -4,10 +4,10 @@ function onError(error) {
 
 function saveUrl() {
     browser.storage.sync.get('urls').then(function(items) {
-        console.log('Existing URLS' + JSON.stringify(items))
+        console.log('Existing URLS in watch list' + JSON.stringify(items))
         newUrl = document.getElementById("new_url").value;
         if (newUrl != '') {
-            console.log("Adding URL" + newUrl);
+            console.log("Adding URL to watch list" + newUrl);
             items.urls.push(newUrl)
             browser.storage.sync.set({ 'urls' : items.urls}).then(restoreOptions, onError);
         }
@@ -16,42 +16,20 @@ function saveUrl() {
 }
 
 function removeUrl(url) {
-    console.log("Remvoing URL " + url)
+    console.log("Remvoing URL from watch list" + url)
     browser.storage.sync.get('urls').then(function(items) {
-        console.log('Existing URLS' + JSON.stringify(items))
+        console.log('Existing URLS in watch list' + JSON.stringify(items))
         updateUrls = [];
         items.urls.forEach(element => {
             if (element != url) {
                 updateUrls.push(element)
             }
         });
-        console.log('New URLS' + updateUrls)
+        console.log('List of URLS in watch list' + updateUrls)
         browser.storage.sync.set({ 'urls' : updateUrls}).then(restoreOptions, onError);
     }, onError);
 }
 
-function saveUrlCallback(items) {
-    console.log(items)
-    urls = ["youtube.com", "espncricinfo.com"]
-    newUrl = document.getElementById("new_url").value;
-    console.log("Adding URL" + newUrl)
-    urls.push(newUrl)
-    browser.storage.sync.set({ 'urls' : urls}).then(restoreOptions, onError);
-    restoreOptions();
-}
-
-function removeUrlCallback(items) {
-    console.log(items)
-    url = 'youtube.com'
-    urls = ["youtube.com", "espncricinfo.com"]
-    updateUrls = [];
-    urls.forEach(element => {
-        if (element != url) {
-            updateUrls.push(element)
-        }
-    });
-    console.log('New URLS' + updateUrls)
-}
 function restoreOptions() {
     browser.storage.sync.get('urls').then(function(items) {
         console.log('Existing URLS' + JSON.stringify(items))
