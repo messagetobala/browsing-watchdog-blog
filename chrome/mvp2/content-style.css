@@ -1,4 +1,4 @@
-#body {
+.watchdog_body {
     margin-top: 10px;
     margin-left: 10%;
     margin-right: 10%;
@@ -6,19 +6,16 @@
     font-family: Roboto, Arial, sans-serif;
 }
 
-section {
+.watchdog_header_section {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-#header {
     font-size: 2em;
     font-style: italic; 
     text-align: center;
     font-weight: bold;
 }
 
-p {
+.watchdog_para {
     margin-top: 10px;
     margin-bottom: 10px;
 }
