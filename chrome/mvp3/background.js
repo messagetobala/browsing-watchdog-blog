@@ -8,9 +8,15 @@ function addContentScript(tabs) {
     console.log('Current tab url' + currentUrl.hostname)
     if (filteredUrls.includes(currentUrl.hostname)) {
         console.log(`Loading content script into : ${currentUrl.hostname}`);
-        chrome.tabs.sendMessage(tabs[0].id, {
-            replacement: currentUrl.hostname
-        })
+        chrome.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            files: [ "content-script.js" ]
+        });
+    
+        chrome.scripting.insertCSS({
+            target: { tabId: tabs[0].id },
+            files: [ "content-style.css" ]
+        });
      
     } else {
         console.log('Current tab url not matched')

@@ -1,4 +1,4 @@
-function modifyContent(request, sender, sendResponse) {
+function modifyContent() {
     document.body.textContent = ""
 
     let bodyDiv = document.createElement('div')
@@ -22,5 +22,4 @@ function modifyContent(request, sender, sendResponse) {
     document.body.appendChild(bodyDiv)
 }
   
-browser.runtime.onMessage.addListener(modifyContent);
-
+modifyContent()

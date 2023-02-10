@@ -1,6 +1,4 @@
 let FILTERED_URLS = 'filtered_urls'
-let EXEMPTION_CONFIG = 'exemption_config'
-let SAVED_PROMPTS = 'saved_prompts'
 let FROM = 'FROM'
 let TO = 'TO'
 

@@ -14,17 +14,12 @@
     "name": "Balakrishnan Rajkumar",
     "url": "https://github.com/messagetobala/"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content-script.js"],
-      "css" : ["content-style.css"]
-    }
-  ],
+
   "permissions": [
     "webNavigation",
     "tabs",
-    "storage"
+    "storage",
+    "<all_urls>"
   ],
   "options_ui": {
     "page": "options.html",

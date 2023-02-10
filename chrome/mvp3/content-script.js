@@ -1,4 +1,4 @@
-function modifyContent(request, sender, sendResponse) {
+function modifyContent() {
     document.body.textContent = ""
 
     let bodyDiv = document.createElement('div')
@@ -23,4 +23,4 @@ function modifyContent(request, sender, sendResponse) {
 }
 
 
-chrome.runtime.onMessage.addListener(modifyContent);
+modifyContent()

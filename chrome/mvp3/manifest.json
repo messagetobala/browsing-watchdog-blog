@@ -10,18 +10,14 @@
       "48": "icons/watchdog-48.png"
     },
 
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content-script.js"],
-        "css" : ["content-style.css"]
-      }
-    ],
-
     "permissions": [
       "webNavigation",
       "tabs",
       "storage"
+    ],
+
+    "host_permissions" : [
+      "<all_urls>"
     ],
 
     "background": {
