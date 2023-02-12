@@ -1,27 +1,18 @@
 let FILTERED_URLS = 'filtered_urls'
 let filteredUrls = []
 
-function addContentScript(tabs) {
-    console.log('filter urls ' + JSON.stringify(filteredUrls))
-    console.log('Current tab url ' + tabs[0].url)
-    currentUrl = new URL(tabs[0].url)
-    console.log('Current tab url' + currentUrl.hostname)
-    if (filteredUrls.includes(currentUrl.hostname)) {
-        console.log(`Loading content script into : ${currentUrl.hostname}`);
-        browser.tabs.insertCSS({file: "content-style.css"});
-        browser.tabs.executeScript({file: "content-script.js"});
-    } else {
-        console.log('Current tab url not matched')
-    }
-}
-
 function getCurrentTabAndAddContentScript(requestDetails) {
-    let querying = browser.tabs.query({
-        active: true,
-        currentWindow: true
-    });
-    querying.then(addContentScript);
-
+  console.log('Filtered urls ' + JSON.stringify(filteredUrls))
+  console.log('Current tab url ' + requestDetails.url)
+  currentUrl = new URL(requestDetails.url)
+  console.log('Current tab url' + currentUrl.hostname)
+  if (filteredUrls.includes(currentUrl.hostname)) {
+      console.log(`Loading content script into : ${currentUrl.hostname}`);
+      browser.tabs.insertCSS({file: "content-style.css"});
+      browser.tabs.executeScript({file: "content-script.js"});
+  } else {
+      console.log('Current tab url not matched')
+  }
 }
 
 function addListener(items) {
