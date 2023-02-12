@@ -1,34 +1,27 @@
 let FILTERED_URLS = 'filtered_urls'
 let filteredUrls = []
 
-
-function addContentScript(tabs) {
-    console.log('filter urls ' + JSON.stringify(filteredUrls))
-    currentUrl = new URL(tabs[0].url)
+function getCurrentTabAndAddContentScript(requestDetails) {
+    console.log('Filtered urls ' + JSON.stringify(filteredUrls))
+    console.log('Current tab url ' + requestDetails.url)
+    console.log('Current tab id ' + requestDetails.tabId)
+    currentUrl = new URL(requestDetails.url)
     console.log('Current tab url' + currentUrl.hostname)
     if (filteredUrls.includes(currentUrl.hostname)) {
         console.log(`Loading content script into : ${currentUrl.hostname}`);
         chrome.scripting.executeScript({
-            target: { tabId: tabs[0].id },
+            target: { tabId: requestDetails.tabId },
             files: [ "content-script.js" ]
         });
     
         chrome.scripting.insertCSS({
-            target: { tabId: tabs[0].id },
+            target: { tabId: requestDetails.tabId },
             files: [ "content-style.css" ]
         });
      
     } else {
         console.log('Current tab url not matched')
     }
-}
-
-function getCurrentTabAndAddContentScript(requestDetails) {
-    let querying = chrome.tabs.query({
-        active: true,
-        currentWindow: true
-    });
-    querying.then(addContentScript);
 
 }
 
